@@ -1,0 +1,26 @@
+rows=int(input())
+columns=int(input())
+matrix=[]
+for i in range(rows):
+    matrix.append([0]*columns)
+maxrows=[0]*rows
+for i in range(rows):
+    x=int(input())
+    maxr=x
+    matrix[i][0]=x
+    for j in range(1,columns):
+        x=int(input())
+        matrix[i][j]=x
+        if x>maxr: 
+            maxrows[i]=j
+            maxr=x
+c=0
+for i in range(rows):
+    truth=1
+    for j in range(rows):
+        if matrix[j][maxrows[i]]<matrix[i][maxrows[i]]:
+            truth=0
+    if truth:
+        print(i, maxrows[i])
+        c=1
+if c==0: print("none")
