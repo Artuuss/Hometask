@@ -1,0 +1,19 @@
+def prime(number: int):
+    numbers=[0]*(number-1)
+    for i in range(2, number+1):
+        numbers[i-2]=i
+    p=2
+    while p*p<=number:
+        for i in range(p*p, number+1, p):
+            numbers[i-2]=0
+        p+=1
+        while numbers[p-2]==0: p+=1
+    primenumbers=[x for x in numbers if x!=0]
+    return primenumbers
+    
+x=abs(int(input()))
+div=prime(x)
+for i in div[::-1]:
+    if x%i==0:
+        print(i)
+        break
