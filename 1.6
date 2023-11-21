@@ -1,0 +1,13 @@
+n=int(input())
+k=int(input())
+survivors=[1]*n
+kill=0
+survivors[0]=0
+for i in range(n-2):
+    schetchik=0
+    while schetchik!=k:
+        if survivors[kill]==1:
+            schetchik+=1
+        kill=(kill+1)%n
+    survivors[kill-1]=0
+print(survivors.index(1))
