@@ -1,0 +1,14 @@
+n=int(input())
+x0=int(input())
+polynom=0
+derivative=0
+a=int(input())
+polynom+=a
+derivative+=a*n
+for i in range(n):
+    ai=int(input())
+    polynom*=x0
+    polynom+=ai
+    derivative*=x0 if n-1!=i else 1
+    derivative+=ai*(n-i-1)
+print(polynom,derivative)
