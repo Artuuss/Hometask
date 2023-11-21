@@ -1,0 +1,43 @@
+class BankCard:
+    bank="Sber"
+    operation_limit=2000
+    comission=0.04
+
+    def __init__(self, number: str, funds: float, vip: bool):
+        self.number=number
+        self.funds=funds
+        self.vip=vip
+
+    def withdraw(self, amount: float):
+        if amount<=BankCard.operation_limit:
+            if self.funds>=amount:
+                self.funds-=amount
+                print("Operation performed.")
+            else:
+                print("Operation can't be performed, you don't have enough money.")
+        else:
+            print("You've exeeded operation limit.")
+
+    def deposit(self, amount: float):
+        if amount<=BankCard.operation_limit:
+            if self.vip:
+                self.funds+=amount
+            else:
+                self.funds+=amount*(1-BankCard.comission)
+            print("Operation performed.")
+        else:
+            print("You've exeeded operation limit.")
+
+    def transfer(self, self_to, amount: float):
+        if amount<=BankCard.operation_limit:
+            if self.funds>=amount:
+                self.funds-=amount
+                if self_to.vip and self.vip:
+                    self_to.funds+=amount
+                else:
+                    self_to.funds+=amount*(1-BankCard.comission)
+                print("Operation performed.")
+            else:
+                print("Operation can't be performed, you don't have enough money.")
+        else:
+            print("You've exeeded operation limit.")
