@@ -1,0 +1,24 @@
+def fibsys(x: int):
+    fibstring=''
+    fib1=1
+    fib2=1
+    num2=1
+    while fib2<=x:
+        fib2+=fib1
+        fib1=fib2-fib1
+        num2+=1
+    num=num2
+    while x>0:
+        if fib1<=x:
+            fibstring+='0'*(num-num2-1)+'1'
+            num=num2
+            x-=fib1
+        fib1=fib2-fib1
+        fib2-=fib1
+        num2-=1
+    fibstring+='0'*(num2-1)
+    return fibstring
+
+
+x=int(input())
+print(fibsys(x))
