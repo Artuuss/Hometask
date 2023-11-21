@@ -1,0 +1,10 @@
+def intersect(a: str, b: str):
+    c=''
+    for i in range(32):
+        if a[i]==b[i]=='1': c+='1'
+        else: c+='0'
+    return(c)
+    
+a=input()
+b=input()
+print(intersect(a,b))
