@@ -1,0 +1,11 @@
+size=int(input())
+numbers=[]
+for i in range(size):
+    numbers.append(int(input()))
+k=int(input())
+maxsum=sum(numbers[:k])
+currentsum=maxsum
+for i in range(k,size):
+    currentsum+=numbers[i]-numbers[i-k]
+    maxsum=max(maxsum, currentsum)
+print(maxsum)
