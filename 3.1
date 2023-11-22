@@ -35,8 +35,26 @@ class BankCard:
                 if self_to.vip and self.vip:
                     self_to.funds+=amount
                 else:
-                    self_to.funds+=amount*(1-BankCard.comission)
+                    self_to.funds+=amount*(1-self.comission-self_to.comission)
                 print("Operation performed.")
+            else:
+                print("Operation can't be performed, you don't have enough money.")
+        else:
+            print("You've exeeded operation limit.")
+            
+            
+class credit(BankCard):
+    comission=0.5
+    
+    def __init__(self, number: str, funds: float, vip: bool):
+        self.number=number
+        self.funds=funds
+        self.vip=0
+
+a=BankCard('1',3000,1)
+b=credit('22',2000,1)
+a.transfer(b,600)
+print(a.funds, b.funds)
             else:
                 print("Operation can't be performed, you don't have enough money.")
         else:
