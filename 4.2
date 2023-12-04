@@ -1,0 +1,41 @@
+def overlap(s1: str, s2: str):
+    maxx=0
+    m=len(s1)
+    n=len(s2)
+    s=s1+s2
+    for i in range(1, min(m, n)+1):
+        if s1[m-i:]==s2[:i] and maxx<i:
+            maxx=i;
+            s=s1+s2[i:]
+    for i in range(1, min(m, n)+1):
+        if s2[n-i:]==s1[:i] and maxx<i:
+            maxx=i;
+            s=s2+s1[i:]
+    return s
+
+def superstring(strings):
+    n=len(strings)
+    while n!=1:
+        maxx=0
+        maxi=0
+        maxj=0
+        maxs=''
+        for i in range(n):
+            for j in range(i+1, n):
+                string=overlap(strings[i], strings[j])
+                k=len(strings[i])+len(strings[j])-len(string)
+                if maxx<k:
+                    maxx=k
+                    maxs=string
+                    maxi=i
+                    maxj=j
+        if maxx==0:
+            strings[0]+=strings[n-1]
+        else:
+            strings[maxi]=maxs
+            strings[maxj]=strings[n-1]
+        strings[n-1]=''
+        n-=1
+    return strings[0]
+strings = [ "123456", "999123", "56999", "765", "0123" ]
+print("The shortest superstring is ", superstring(strings))
