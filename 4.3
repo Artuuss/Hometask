@@ -1,0 +1,24 @@
+n=int(input())
+sequence=[]
+for i in range(n):
+    sequence.append(int(input()))
+powers=[]
+power=n
+while power<10**6:
+    powers.append(power)
+    power*=n
+print(powers)
+
+def combinations(searchin, searchwhat, current):
+    summa = sum(current)
+    c=0
+    if summa in searchwhat: 
+        print (current)
+        c+=1
+    for i in range(len(searchin)):
+        n=searchin[i]
+        left = searchin[i+1:]
+        c+=combinations(left, searchwhat, current+[n]) 
+    return c
+
+print(combinations(sequence,powers,[]))
