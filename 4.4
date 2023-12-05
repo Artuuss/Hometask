@@ -1,0 +1,40 @@
+def compare(a:int, b:int):
+    if a<b:
+        return -1
+    if a==b:
+        return 0
+    return 1
+
+def swap(h:list, a:int, b:int):
+    temp=h[a]
+    h[a]=h[b]
+    h[b]=temp
+
+def bubblesort(nel: int, compare, swap):
+    mass=[0]*nel
+    for i in range(nel):
+        mass[i]=int(input())
+    print(mass)
+    check=0
+    left=0
+    right=nel-1
+    while left<right:
+        check=1
+        for i in range(left,right):
+            if compare(mass[i],mass[i+1])==1:
+                swap(mass,i,i+1)
+                check = 0
+        if check:
+            break
+        check=1
+        for i in range(right-1,left,-1):
+            if compare(mass[i],mass[i-1])==-1:
+                swap(mass,i,i-1)
+                check=0
+        if check:
+            break
+        left+=1
+        right-=1
+    print(mass)
+
+bubblesort(10, compare, swap)
